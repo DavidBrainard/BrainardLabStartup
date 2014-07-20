@@ -11,7 +11,7 @@ function [isCluster,whichCluster] =  IsCluster
 % rethought .
 %
 % 6/10/09  dhb  Wrote it.
-% 3/23/10  dhb  Make help match what function  returns.
+% 3/23/10  dhb  Make help match what function returns.
 
 % Set default response
 isCluster = 0;
