@@ -53,6 +53,9 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %              the PTB works with and without our BLTB. Possible
 %              that this should omit other stuff that is pretty specific to
 %              us, but I didn't do that either.
+% 7/31/14 dhb, ncp  Classes is no more.  Now in BLTB.
+%         dhb, ncp  Put computationaleyebrain/toolbox onto path.  Slight
+%                   violation of our conventions, but life is short.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -72,14 +75,6 @@ end
 
 % Determines if this computer is some flavor of OS X.
 iAmOSX = any(strcmp(computer, {'MAC', 'MACI', 'MACI64'}));
-
-% Defines if the user needs the developer copy of Classes.
-% Path ordering for classes in later versions of Matlab and
-% merely having Classes-Dev ahead of Classes in the path
-% doesn't make things totally kosher anymore.  Instead we'll
-% define a flag to set which Classes each user needs.  By
-% default, it will signal Classes-Dev, not Classes.
-useClassesDev = true;
 
 % Check whether stored path has gotten screwed up because there was a
 % savepath stuck at the end of this file at some point.  Also handles case
@@ -214,13 +209,6 @@ if iAmOSX
                     setenv('PATH', [getenv('PATH') ':' getenv('ANTSPATH') ':' '/usr/local/fsl/bin']);
             end
             
-            % Our classes.
-            if useClassesDev
-                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Classes-Dev')];
-            else
-                error('ERROR: You are running an old version of Classes.  Update.  Ask David or Nicolas\n');
-                %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Classes')];
-            end
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorMemoryToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastResponseModelToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/DenoiseToolbox')];
@@ -325,7 +313,8 @@ if iAmOSX
             %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/iset-4.0')];
             %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/vset')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/isetbio')];
-            
+            paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/computationaleyebrain/toolbox')];
+
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
 
