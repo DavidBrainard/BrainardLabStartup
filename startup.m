@@ -56,6 +56,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 % 7/31/14 dhb, ncp  Classes is no more.  Now in BLTB.
 %         dhb, ncp  Put computationaleyebrain/toolbox onto path.  Slight
 %                   violation of our conventions, but life is short.
+% 8/1/14  dhb  Add ColorBookToolbox.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -226,10 +227,10 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/StereoHDRToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/StimulusPackages')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox')];
-            %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/WavefrontOpticsToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ConeAdaptationToolbox')];
-            
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
+                             
             % Toolboxes in our local toolboxesdistrib repository.
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/','dir'))
                 paths2add = [paths2add, '/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/MEX:', ...
