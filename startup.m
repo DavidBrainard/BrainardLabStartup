@@ -6,6 +6,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %   'trunk' -- use the trunk version
 %   'beta'/'current' -- use the current (aka beta) version.
 %   'stable' -- use the stable version.
+%   'none' -- no PTB!
 %
 % forceDefault:
 %    0 -- Don't reset saved path unless Psychtoolbox is found on path (default).
@@ -132,31 +133,33 @@ if iAmOSX
             [nil, theUser] = unix('whoami');
             
             % Psychtoolbox.  We use the trunk.
-            switch (theUser(1:end-1))
-                otherwise
-                    switch (psychtoolboxFlavor)
-                        case {'default'}
-                            if (exist('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox','dir'))
+            if ~(strcmp(psychtoolboxFlavor,'none'))
+                switch (theUser(1:end-1))
+                    otherwise
+                        switch (psychtoolboxFlavor)
+                            case {'default'}
+                                if (exist('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox','dir'))
+                                    paths2add = [paths2add, ...
+                                        genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox')];
+                                else
+                                    fprintf('WARNING: You are running an old version of Psychtoolbox.  Upgrade.  Ask David or Nicolas.\n');
+                                    paths2add = [paths2add, ...
+                                        genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-Trunk/Psychtoolbox')];
+                                end
+                            case {'github'}
                                 paths2add = [paths2add, ...
                                     genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox')];
-                            else
+                            case {'trunk'}
                                 fprintf('WARNING: You are running an old version of Psychtoolbox.  Upgrade.  Ask David or Nicolas.\n');
                                 paths2add = [paths2add, ...
                                     genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-Trunk/Psychtoolbox')];
-                            end
-                        case {'github'}
-                            paths2add = [paths2add, ...
-                                genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox')];
-                        case {'trunk'}
-                            fprintf('WARNING: You are running an old version of Psychtoolbox.  Upgrade.  Ask David or Nicolas.\n');
-                            paths2add = [paths2add, ...
-                                genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-Trunk/Psychtoolbox')];
-                        case {'beta', 'current'}
-                            fprintf('WARNING: You are running an old version of Psychtoolbox.  Upgrade.  Ask David or Nicolas.\n');
-                            paths2add = [paths2add, ...
-                                genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-Beta'), ...
-                                ];
-                    end
+                            case {'beta', 'current'}
+                                fprintf('WARNING: You are running an old version of Psychtoolbox.  Upgrade.  Ask David or Nicolas.\n');
+                                paths2add = [paths2add, ...
+                                    genpath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-Beta'), ...
+                                    ];
+                        end
+                end
             end
             
             % User specific custimization. We can special case certain users if we want to.
