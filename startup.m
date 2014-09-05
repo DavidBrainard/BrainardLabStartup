@@ -229,6 +229,7 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ConeAdaptationToolbox')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OLEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
                              
             % Toolboxes in our local toolboxesdistrib repository.
