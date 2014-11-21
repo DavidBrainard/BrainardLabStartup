@@ -178,7 +178,8 @@ if iAmOSX
                         genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
                         genpath('/Applications/freesurfer/matlab') ...
                         genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerMRI') ...
-                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter')];
+                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter') ... 
+                        genpath('/Users/Shared/Matlab/Toolboxes/AstroMatlab')];
                     
                     setenv('FREESURFER_HOME', '/Applications/freesurfer');
                     setenv('SUBJECTS_DIR', '/Applications/freesurfer/subjects');
@@ -234,7 +235,8 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ConeAdaptationToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OLEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
-                             
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastSplatterToolbox')];              
+            
             % Toolboxes in our local toolboxesdistrib repository.
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/','dir'))
                 paths2add = [paths2add, '/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/MEX:', ...
