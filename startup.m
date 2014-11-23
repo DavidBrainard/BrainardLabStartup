@@ -58,6 +58,9 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %         dhb, ncp  Put computationaleyebrain/toolbox onto path.  Slight
 %                   violation of our conventions, but life is short.
 % 8/1/14  dhb  Add ColorBookToolbox.
+% 11/23/14 dhb Remove user jackallen.
+%         dhb  Add SilentSubstitutionToolbox.
+%         dhb  Remove StimulusPackages.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -167,8 +170,6 @@ if iAmOSX
                 case {'ana'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
                         genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
-                case {'jackallen'}
-                    paths2add = [paths2add,genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
                 case {'radonjic'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
                         genpath('/Users/Shared/Matlab/toolboxes/RenderToolbox3'), ...
@@ -231,7 +232,7 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/PsychCalLocalData')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ReceptorLearningToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/StereoHDRToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/StimulusPackages')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SilentSubstitutionToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ConeAdaptationToolbox')];
