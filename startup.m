@@ -61,6 +61,8 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 % 11/23/14 dhb Remove user jackallen.
 %         dhb  Add SilentSubstitutionToolbox.
 %         dhb  Remove StimulusPackages.
+% 11/24/14 dhb Add RenderToolboxDevelop.
+%              Remove RenderToolbox3 from Ana's special cases.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -172,7 +174,6 @@ if iAmOSX
                         genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
                 case {'radonjic'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
-                        genpath('/Users/Shared/Matlab/toolboxes/RenderToolbox3'), ...
                         genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
                 case {'nicolas'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/libsvm/matlab')];
@@ -276,10 +277,10 @@ if iAmOSX
             end
             
             % Render toolbox
-            % paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox/RenderToolbox_2.0')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
-            
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolboxDevelop')];
+
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
             
@@ -366,10 +367,10 @@ if (isCluster)
             '/home2/brainard/toolboxes/matlabPyrTools:'];
         
         % Render toolbox
-        %paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox/RenderToolbox_2.0')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox3')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SphereRendererToolbox')];
-        
+        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop')];
+
         % Sim toolbox.
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SimAll')];
         
