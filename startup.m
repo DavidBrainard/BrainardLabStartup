@@ -61,7 +61,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 % 11/23/14 dhb Remove user jackallen.
 %         dhb  Add SilentSubstitutionToolbox.
 %         dhb  Remove StimulusPackages.
-% 11/24/14 dhb Add RenderToolboxDevelop.
+% 11/24/14 dhb Add RenderToolboxDevelop/VirtualScenesToolbox.
 %              Remove RenderToolbox3 from Ana's special cases.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
@@ -279,7 +279,7 @@ if iAmOSX
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolboxDevelop')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
 
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
@@ -369,7 +369,7 @@ if (isCluster)
         % Render toolbox
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox3')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SphereRendererToolbox')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop')];
+        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
 
         % Sim toolbox.
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SimAll')];
