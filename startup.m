@@ -217,6 +217,8 @@ if iAmOSX
                     % Add ANTS
                     setenv('ANTSPATH', '/usr/bin');
                     setenv('PATH', [getenv('PATH') ':' getenv('ANTSPATH') ':' '/usr/local/fsl/bin']);
+                    setenv('PATH', [getenv('PATH') ':/usr/local/afni']);
+                    setenv('DYLD_LIBRARY_PATH', '/usr/local/bin/');
             end
             
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorMemoryToolbox')];
