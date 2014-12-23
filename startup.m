@@ -63,6 +63,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %         dhb  Remove StimulusPackages.
 % 11/24/14 dhb Add RenderToolboxDevelop/VirtualScenesToolbox.
 %              Remove RenderToolbox3 from Ana's special cases.
+% 12/23/14 dhb Remove ConeAdaptationToolbox because it collides with isetbio.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -239,7 +240,6 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SilentSubstitutionToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ConeAdaptationToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OLEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastSplatterToolbox')];              
