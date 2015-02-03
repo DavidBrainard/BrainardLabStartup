@@ -328,7 +328,8 @@ if iAmOSX
             %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/vset')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/isetbio')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/computationaleyebrain/toolbox')];
-
+            paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/UnitTestToolbox')];
+            
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
 
