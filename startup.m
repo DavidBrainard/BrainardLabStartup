@@ -329,8 +329,8 @@ if iAmOSX
             %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/iset-4.0')];
             %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/vset')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/isetbio')];
-            paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/computationaleyebrain/toolbox')];
-            paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/BLIlluminationDiscriminationCalcs/toolbox')];
+            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/computationaleyebrain/toolbox')];
+            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/BLIlluminationDiscriminationCalcs/toolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/UnitTestToolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/RemoteDataToolbox')];
             
