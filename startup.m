@@ -337,7 +337,7 @@ if iAmOSX
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
 
-% Cluster initialization
+% Cluster initializationhttps://github.com/isetbio/RemoteDataToolbox/blob/master/scripts/testConnection.m
 if (exist('IsCluster'))
     [isCluster,whichCluster] = IsCluster;
 else
