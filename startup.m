@@ -177,7 +177,10 @@ if iAmOSX
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
                         genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
                 case {'nicolas'}
-                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/libsvm/matlab')];
+                    paths2add = [paths2add, ...
+                        genpath('/Users/Shared/Matlab/Toolboxes/libsvm/matlab'), ...
+                        genpath('/Users/Shared/Matlab/Analysis/BLHyperspectralImageComputations')...
+                    ];
                 case {'spitschan', 'mspits'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
                         genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
@@ -330,8 +333,10 @@ if iAmOSX
             %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/vset')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/isetbio')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/computationaleyebrain/toolbox')];
+            paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/BLHyperspectralImageComputations/toolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/BLIlluminationDiscriminationCalcs/toolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/UnitTestToolbox')];
+            paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/RemoteDataToolbox')];
             
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
