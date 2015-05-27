@@ -259,7 +259,11 @@ if iAmOSX
             end
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('ComplexStatisticsToolbox', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('m2html',    '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
-            paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
+            if (exist('/Users/Shared/Matlab/ToolboxesDistrib/Palamedes/','dir'))
+                paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
+            else
+                paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes_1.8', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
+            end
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('psignifit', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('NIfTIToolbox', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             
