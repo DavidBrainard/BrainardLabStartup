@@ -64,6 +64,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 % 11/24/14 dhb Add RenderToolboxDevelop/VirtualScenesToolbox.
 %              Remove RenderToolbox3 from Ana's special cases.
 % 12/23/14 dhb Remove ConeAdaptationToolbox because it collides with isetbio.
+% 09/03/15 dhb MGL is now back to being called mgl, even for the 64 bit version.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -281,9 +282,15 @@ if iAmOSX
             %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Common')];
             
             % MGL.  32 bit version is local, 64 we get from the distribution server.
+            % The newest 64 bit version has the old mgl name and is now on
+            % gitHub.
             mgl64OverrideComputers = {'squid', 'clam'};  % 32 bit computers that use the new MGL.
             if strcmp(computer, 'MACI64') || any(strcmp(lower(strtok(host, '.')), mgl64OverrideComputers)) || strcmp(host(1:6), 'Baird1')
-                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl64')];
+                if (exist('/Users/Shared/Matlab/Toolboxes/mgl64','dir'))
+                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl64')];
+                elseif (exist('/Users/Shared/Matlab/Toolboxes/mgl','dir'))
+                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
+                end
             else
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             end
