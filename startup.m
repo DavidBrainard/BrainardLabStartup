@@ -294,7 +294,7 @@ if iAmOSX
                 if (exist('/Users/Shared/Matlab/Toolboxes/mgl64','dir'))
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl64')];
                 elseif (exist('/Users/Shared/Matlab/ToolboxesDistrib/mgl','dir'))
-                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/ToolboxesDistrb/mgl')];
+                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/ToolboxesDistrib/mgl')];
                 end
             else
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
