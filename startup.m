@@ -262,6 +262,8 @@ if iAmOSX
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('m2html',    '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/Palamedes/','dir'))
                 paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
+            elseif (exist('/Users/Shared/Matlab/ToolboxesDistrib/Palamedes_1.0/','dir'))
+                paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes_1.0', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             else
                 paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes_1.8', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             end
