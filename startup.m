@@ -284,14 +284,17 @@ if iAmOSX
             %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Common')];
             
             % MGL.  32 bit version is local, 64 we get from the distribution server.
-            % The newest 64 bit version has the old mgl name and is now on
-            % gitHub.
-            mgl64OverrideComputers = {'squid', 'clam'};  % 32 bit computers that use the new MGL.
+            % The newest 64 bit version has the old mgl name and is now on gitHub.
+            % Also, it should live in ToolboxesDistrib, not toolboxes.
+            %
+            % I think the 32 bit stuff can go away, but is not really doing
+            % any harm.
+            mgl64OverrideComputers = {'squid', 'clam'};
             if strcmp(computer, 'MACI64') || any(strcmp(lower(strtok(host, '.')), mgl64OverrideComputers)) || strcmp(host(1:6), 'Baird1')
                 if (exist('/Users/Shared/Matlab/Toolboxes/mgl64','dir'))
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl64')];
-                elseif (exist('/Users/Shared/Matlab/Toolboxes/mgl','dir'))
-                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
+                elseif (exist('/Users/Shared/Matlab/ToolboxesDistrib/mgl','dir'))
+                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/ToolboxesDistrb/mgl')];
                 end
             else
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
