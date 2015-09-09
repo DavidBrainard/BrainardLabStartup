@@ -300,6 +300,11 @@ if iAmOSX
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             end
             
+            % Case for igert computers
+            if strfind(host, 'igert')
+                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
+            end
+            
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
