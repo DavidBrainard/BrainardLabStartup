@@ -309,7 +309,8 @@ if iAmOSX
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/VirtualScenes')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Blobbies')];
 
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
