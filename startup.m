@@ -183,50 +183,53 @@ if iAmOSX
                         genpath('/Users/Shared/Matlab/Analysis/BLHyperspectralImageComputations'), ...
                         genpath('/Users/Shared/Matlab/Toolboxes/mgl') ...
                         ];
+                case {'melanopsin', 'pupillab'}
+                    paths2add = [paths2add, ...
+                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerSensitivity'];
                 case {'spitschan', 'mspits'}
-                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
-                        genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
-                        genpath('/Applications/freesurfer/matlab') ...
-                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerMRI') ...
-                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter') ... 
-                        genpath('/Users/Shared/Matlab/Toolboxes/AstroMatlab') ...
-                        genpath('/Users/Shared/Matlab/gkaguirrelab_Toolboxes') ...
-                        genpath('/Users/Shared/Matlab/gkaguirrelab_Projects') ...
-                        genpath('/Users/Shared/Matlab/gkaguirrelab_Stimuli')];
-                    
-                    setenv('FREESURFER_HOME', '/Applications/freesurfer');
-                    setenv('SUBJECTS_DIR', '/Applications/freesurfer/subjects');
-                    setenv('FSFAST_HOME', '/Applications/freesurfer/fsfast');
-                    setenv('FSF_OUTPUT_FORMAT', 'nii.gz');
-                    setenv('FSL_DIR', '/usr/local/fsl');
-                    setenv('FSLDIR', '/usr/local/fsl');
-                    setenv('MNI_DIR', '/Applications/freesurfer/mni');
-                    setenv('FSLOUTPUTTYPE', 'NIFTI_GZ');
-                    
-                    setenv('PATH', [getenv('PATH') ':/Applications/freesurfer/bin'])
-                    %------------ FreeSurfer -----------------------------%
-                    fshome = getenv('FREESURFER_HOME');
-                    fsmatlab = sprintf('%s/matlab',fshome);
-                    if (exist(fsmatlab) == 7)
-                        path(path,fsmatlab);
-                    end
-                    clear fshome fsmatlab;
-                    %-----------------------------------------------------%
-                    
-                    %------------ FreeSurfer FAST ------------------------%
-                    fsfasthome = getenv('FSFAST_HOME');
-                    fsfasttoolbox = sprintf('%s/toolbox',fsfasthome);
-                    if (exist(fsfasttoolbox) == 7)
-                        path(path,fsfasttoolbox);
-                    end
-                    clear fsfasthome fsfasttoolbox;
-                    %-----------------------------------------------------%
-                    
-                    % Add ANTS
-                    setenv('ANTSPATH', '/usr/bin');
-                    setenv('PATH', [getenv('PATH') ':' getenv('ANTSPATH') ':' '/usr/local/fsl/bin']);
-                    setenv('PATH', [getenv('PATH') ':/usr/local/afni']);
-                    setenv('DYLD_LIBRARY_PATH', '/usr/local/bin/');
+                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
+                    genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
+                    genpath('/Applications/freesurfer/matlab') ...
+                    genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerMRI') ...
+                    genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter') ...
+                    genpath('/Users/Shared/Matlab/Toolboxes/AstroMatlab') ...
+                    genpath('/Users/Shared/Matlab/gkaguirrelab_Toolboxes') ...
+                    genpath('/Users/Shared/Matlab/gkaguirrelab_Projects') ...
+                    genpath('/Users/Shared/Matlab/gkaguirrelab_Stimuli')];
+                
+                setenv('FREESURFER_HOME', '/Applications/freesurfer');
+                setenv('SUBJECTS_DIR', '/Applications/freesurfer/subjects');
+                setenv('FSFAST_HOME', '/Applications/freesurfer/fsfast');
+                setenv('FSF_OUTPUT_FORMAT', 'nii.gz');
+                setenv('FSL_DIR', '/usr/local/fsl');
+                setenv('FSLDIR', '/usr/local/fsl');
+                setenv('MNI_DIR', '/Applications/freesurfer/mni');
+                setenv('FSLOUTPUTTYPE', 'NIFTI_GZ');
+                
+                setenv('PATH', [getenv('PATH') ':/Applications/freesurfer/bin'])
+                %------------ FreeSurfer -----------------------------%
+                fshome = getenv('FREESURFER_HOME');
+                fsmatlab = sprintf('%s/matlab',fshome);
+                if (exist(fsmatlab) == 7)
+                    path(path,fsmatlab);
+                end
+                clear fshome fsmatlab;
+                %-----------------------------------------------------%
+                
+                %------------ FreeSurfer FAST ------------------------%
+                fsfasthome = getenv('FSFAST_HOME');
+                fsfasttoolbox = sprintf('%s/toolbox',fsfasthome);
+                if (exist(fsfasttoolbox) == 7)
+                    path(path,fsfasttoolbox);
+                end
+                clear fsfasthome fsfasttoolbox;
+                %-----------------------------------------------------%
+                
+                % Add ANTS
+                setenv('ANTSPATH', '/usr/bin');
+                setenv('PATH', [getenv('PATH') ':' getenv('ANTSPATH') ':' '/usr/local/fsl/bin']);
+                setenv('PATH', [getenv('PATH') ':/usr/local/afni']);
+                setenv('DYLD_LIBRARY_PATH', '/usr/local/bin/');
             end
             
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorMemoryToolbox')];
@@ -249,7 +252,7 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OLEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastSplatterToolbox')];              
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastSplatterToolbox')];
             
             % Toolboxes in our local toolboxesdistrib repository.
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/','dir'))
@@ -311,7 +314,7 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/VirtualScenes')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Blobbies')];
-
+            
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
             
@@ -392,7 +395,7 @@ if (isCluster)
         % BrainardLabToolbox
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabToolbox')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabPrivateToolbox')];
-  
+        
         % MDS toolbox
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/MDSToolbox')];
         
@@ -404,7 +407,7 @@ if (isCluster)
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox3')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SphereRendererToolbox')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
-
+        
         % Sim toolbox.
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SimAll')];
         
