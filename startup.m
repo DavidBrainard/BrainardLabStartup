@@ -186,7 +186,7 @@ if iAmOSX
                         genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
                         genpath('/Applications/freesurfer/matlab') ...
                         genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerMRI') ...
-                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter') ... 
+                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter') ...
                         genpath('/Users/Shared/Matlab/Toolboxes/AstroMatlab') ...
                         genpath('/Users/Shared/Matlab/gkaguirrelab_Toolboxes') ...
                         genpath('/Users/Shared/Matlab/gkaguirrelab_Projects') ...
@@ -247,7 +247,7 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OLEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastSplatterToolbox')];              
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastSplatterToolbox')];
             
             % Toolboxes in our local toolboxesdistrib repository.
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/','dir'))
@@ -287,12 +287,13 @@ if iAmOSX
             else
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             end
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
-
+            
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
             
@@ -373,7 +374,7 @@ if (isCluster)
         % BrainardLabToolbox
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabToolbox')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabPrivateToolbox')];
-  
+        
         % MDS toolbox
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/MDSToolbox')];
         
@@ -385,7 +386,7 @@ if (isCluster)
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox3')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SphereRendererToolbox')];
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
-
+        
         % Sim toolbox.
         paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SimAll')];
         
