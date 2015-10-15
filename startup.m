@@ -64,6 +64,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 % 11/24/14 dhb Add RenderToolboxDevelop/VirtualScenesToolbox.
 %              Remove RenderToolbox3 from Ana's special cases.
 % 12/23/14 dhb Remove ConeAdaptationToolbox because it collides with isetbio.
+% 09/03/15 dhb MGL is now back to being called mgl, even for the 64 bit version.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -180,8 +181,13 @@ if iAmOSX
                     paths2add = [paths2add, ...
                         genpath('/Users/Shared/Matlab/Toolboxes/libsvm/matlab'), ...
                         genpath('/Users/Shared/Matlab/Analysis/BLHyperspectralImageComputations'), ...
+                        genpath('/Users/Shared/Matlab/Toolboxes/mgl') ...
                         ];
+                case {'melanopsin', 'pupillab'}
+                    paths2add = [paths2add, ...
+                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerSensitivity'];
                 case {'spitschan', 'mspits'}
+<<<<<<< HEAD
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
                         genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
                         genpath('/Applications/freesurfer/matlab') ...
@@ -225,6 +231,51 @@ if iAmOSX
                     setenv('PATH', [getenv('PATH') ':' getenv('ANTSPATH') ':' '/usr/local/fsl/bin']);
                     setenv('PATH', [getenv('PATH') ':/usr/local/afni']);
                     setenv('DYLD_LIBRARY_PATH', '/usr/local/bin/');
+=======
+                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
+                    genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
+                    genpath('/Applications/freesurfer/matlab') ...
+                    genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerMRI') ...
+                    genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter') ...
+                    genpath('/Users/Shared/Matlab/Toolboxes/AstroMatlab') ...
+                    genpath('/Users/Shared/Matlab/gkaguirrelab_Toolboxes') ...
+                    genpath('/Users/Shared/Matlab/gkaguirrelab_Projects') ...
+                    genpath('/Users/Shared/Matlab/gkaguirrelab_Stimuli')];
+                
+                setenv('FREESURFER_HOME', '/Applications/freesurfer');
+                setenv('SUBJECTS_DIR', '/Applications/freesurfer/subjects');
+                setenv('FSFAST_HOME', '/Applications/freesurfer/fsfast');
+                setenv('FSF_OUTPUT_FORMAT', 'nii.gz');
+                setenv('FSL_DIR', '/usr/local/fsl');
+                setenv('FSLDIR', '/usr/local/fsl');
+                setenv('MNI_DIR', '/Applications/freesurfer/mni');
+                setenv('FSLOUTPUTTYPE', 'NIFTI_GZ');
+                
+                setenv('PATH', [getenv('PATH') ':/Applications/freesurfer/bin'])
+                %------------ FreeSurfer -----------------------------%
+                fshome = getenv('FREESURFER_HOME');
+                fsmatlab = sprintf('%s/matlab',fshome);
+                if (exist(fsmatlab) == 7)
+                    path(path,fsmatlab);
+                end
+                clear fshome fsmatlab;
+                %-----------------------------------------------------%
+                
+                %------------ FreeSurfer FAST ------------------------%
+                fsfasthome = getenv('FSFAST_HOME');
+                fsfasttoolbox = sprintf('%s/toolbox',fsfasthome);
+                if (exist(fsfasttoolbox) == 7)
+                    path(path,fsfasttoolbox);
+                end
+                clear fsfasthome fsfasttoolbox;
+                %-----------------------------------------------------%
+                
+                % Add ANTS
+                setenv('ANTSPATH', '/usr/bin');
+                setenv('PATH', [getenv('PATH') ':' getenv('ANTSPATH') ':' '/usr/local/fsl/bin']);
+                setenv('PATH', [getenv('PATH') ':/usr/local/afni']);
+                setenv('DYLD_LIBRARY_PATH', '/usr/local/bin/');
+>>>>>>> 4e3742ae743aeb7b276e5dadde055c46c5d44070
             end
             
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorMemoryToolbox')];
@@ -261,6 +312,8 @@ if iAmOSX
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('m2html',    '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/Palamedes/','dir'))
                 paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
+            elseif (exist('/Users/Shared/Matlab/ToolboxesDistrib/Palamedes_1.0/','dir'))
+                paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes_1.0', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             else
                 paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('Palamedes_1.8', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             end
@@ -281,18 +334,37 @@ if iAmOSX
             %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Common')];
             
             % MGL.  32 bit version is local, 64 we get from the distribution server.
-            mgl64OverrideComputers = {'squid', 'clam'};  % 32 bit computers that use the new MGL.
+            % The newest 64 bit version has the old mgl name and is now on gitHub.
+            % Also, it should live in ToolboxesDistrib, not toolboxes.
+            %
+            % I think the 32 bit stuff can go away, but is not really doing
+            % any harm.
+            mgl64OverrideComputers = {'squid', 'clam'};
             if strcmp(computer, 'MACI64') || any(strcmp(lower(strtok(host, '.')), mgl64OverrideComputers)) || strcmp(host(1:6), 'Baird1')
-                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl64')];
+                if (exist('/Users/Shared/Matlab/Toolboxes/mgl64','dir'))
+                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl64')];
+                elseif (exist('/Users/Shared/Matlab/ToolboxesDistrib/mgl','dir'))
+                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/ToolboxesDistrib/mgl')];
+                end
             else
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             end
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             
+            % Case for igert computers
+            if strfind(host, 'igert')
+                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
+            end
+            
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
+<<<<<<< HEAD
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
+=======
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/VirtualScenes')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Blobbies')];
+>>>>>>> 4e3742ae743aeb7b276e5dadde055c46c5d44070
             
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
