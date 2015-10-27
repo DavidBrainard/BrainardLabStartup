@@ -274,9 +274,11 @@ if iAmOSX
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('psignifit', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('NIfTIToolbox', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             
-            if (exist('/Users/Shared/Matlab/Toolboxes/textureSynth/','dir'))
-                paths2add = [paths2add, '/Users/Shared/Matlab/Toolboxes/textureSynth/MEX:', ...
-                    '/Users/Shared/Matlab/Toolboxes/textureSynth:', ...
+            % MEX file innerProd is now slower than it's m file equivalent.
+            % So don't wrap this with genpath, leads to the subdir not
+            % being added.
+            if (exist('/Users/Shared/Matlab/ToolboxesDistrib/textureSynth/','dir'))
+                paths2add = [paths2add, '/Users/Shared/Matlab/ToolboxesDistrib/textureSynth:', ...
                     ];
             end
             
