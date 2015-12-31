@@ -183,6 +183,7 @@ if iAmOSX
                         genpath('/Users/Shared/Matlab/Analysis/BLHyperspectralImageComputations'), ...
                         genpath('/Users/Shared/Matlab/Toolboxes/mgl') ...
                         genpath('/Users/Shared/Matlab/Toolboxes/OLEDToolbox') ...
+                        genpath('/Users/nicolas/Documents/1.code/2.matlabDevs/ProjectPrefs') ...
                         ];
                 case {'pupillab', 'melanopsin'}
                     paths2add = [paths2add, ...
@@ -307,10 +308,6 @@ if iAmOSX
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             end
             
-            % Case for igert computers
-            if strfind(host, 'igert')
-                paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
-            end
             
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
