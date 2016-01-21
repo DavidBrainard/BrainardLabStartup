@@ -247,6 +247,7 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LabPlotToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MDSToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/NIToolbox')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OneLightDriver')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OneLightToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/PsychCalLocalData')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ReceptorLearningToolbox')];
@@ -443,7 +444,7 @@ if (iAmOSX)
     if (~noBrainardLabToolbox)
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox/PsychJava','Psychtoolbox/PsychJava');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/BrainardLabToolbox/Java/jheapcl/MatlabGarbageCollector.jar','MatlabGarbageCollector.jar');
-        JavaAddToPath('/Users/Shared/Matlab/Toolboxes/OneLightToolbox/OLEngine/OOI_HOME/OmniDriver.jar','OmniDriver.jar');
+        JavaAddToPath('/Users/Shared/Matlab/Toolboxes/OneLightDriver/xOceanOpticsJava/OmniDriver.jar','OmniDriver.jar');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox/ResponseCardSDK-2.6.4/ResponseCardSDK-2.6.4-RELEASE.jar','ResponseCardSDK-2.6.4-RELEASE.jar');
         %JavaAddToPath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox/ResponseCardSDK-2.6.4/lib/jna.jar','jna.jar');
     end
