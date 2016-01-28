@@ -65,6 +65,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %              Remove RenderToolbox3 from Ana's special cases.
 % 12/23/14 dhb Remove ConeAdaptationToolbox because it collides with isetbio.
 % 09/03/15 dhb MGL is now back to being called mgl, even for the 64 bit version.
+% 01/28/16 dhb OneLightDriver, PupilAnalysisToolbox.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -189,7 +190,6 @@ if iAmOSX
                     paths2add = [paths2add, ...
                         genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerSensitivity'), ...
                         genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPsychophysics'), ...
-                        genpath('/Users/Shared/Matlab/Experiments/Toolboxes/PupilAnalysisToolbox'), ...
                         genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
                 case {'spitschan', 'mspits'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
@@ -249,6 +249,8 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MDSToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/NIToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OneLightToolbox')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OneLightDriver')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/PupilAnalysisToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/PsychCalLocalData')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ReceptorLearningToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/StereoHDRToolbox')];
@@ -310,7 +312,6 @@ if iAmOSX
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             end
             
-            
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
@@ -357,11 +358,7 @@ if iAmOSX
             end
             
             % ISET at end so that conflicting names get our version.
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/iset-4.0')];
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/vset')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/isetbio')];
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/computationaleyebrain/toolbox')];
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/BLIlluminationDiscriminationCalcs/toolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/UnitTestToolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/RemoteDataToolbox')];
             
