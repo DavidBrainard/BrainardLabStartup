@@ -259,7 +259,8 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRklar')];              
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRklar')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRblau')];
             
             % Toolboxes in our local toolboxesdistrib repository.
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/','dir'))
