@@ -365,7 +365,7 @@ if iAmOSX
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
 
-% Cluster initializationhttps://github.com/isetbio/RemoteDataToolbox/blob/master/scripts/testConnection.m
+% Cluster initialization https://github.com/isetbio/RemoteDataToolbox/blob/master/scripts/testConnection.m
 if (exist('IsCluster'))
     [isCluster,whichCluster] = IsCluster;
 else
@@ -377,9 +377,9 @@ if (isCluster)
     % time.
     paths2add = [];
     
-    if (strcmp(whichCluster,'rhino'))
+    if (strcmp(whichCluster,'gpc'))
         % Rhino
-        fprintf('Startup: Standard Brainard rhino configuration\n');
+        fprintf('Startup: Standard Brainard GPC configuration\n');
         switch (psychtoolboxFlavor)
             case 'default'
                 paths2add = [paths2add, ...
