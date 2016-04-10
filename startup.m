@@ -380,52 +380,17 @@ if (isCluster)
     paths2add = [];
     
     if (strcmp(whichCluster,'gpc'))
-        % Rhino
+        % GPC
         fprintf('Startup: Standard Brainard GPC configuration\n');
-        switch (psychtoolboxFlavor)
-            case 'default'
-                paths2add = [paths2add, ...
-                    genpath('/home2/brainard/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
-                    ];
-            case {'beta', 'current'}
-                paths2add = [paths2add, ...
-                    genpath('/home2/brainard/toolboxes/Psychtoolbox'), ...
-                    ];
-        end
-        
-        % BrainardLabToolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabToolbox')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabPrivateToolbox')];
-  
-        % MDS toolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/MDSToolbox')];
-        
-        % matlabPyrTools
-        paths2add = [paths2add, '/home2/brainard/toolboxes/matlabPyrTools/MEX:', ...
-            '/home2/brainard/toolboxes/matlabPyrTools:'];
-        
-        % Render toolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox3')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SphereRendererToolbox')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
 
-        % Sim toolbox.
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SimAll')];
-        
-        % isetbio (includes WavefrontOpticsToolbox)
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/isetbio')];
-        
-        % CalLocalData
+        % Psychtoolbox
         paths2add = [paths2add, ...
-            genpath('/home2/brainard/toolboxes/PsychCalLocalData'), ...
-            ];
+                    genpath('/home/brainard/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
+                    ];
+                
+        % BrainardLabToolbox
+        paths2add = [paths2add, genpath('/home/brainard/toolboxes/BrainardLabToolbox')];
         
-        % NAG
-        paths2add = [paths2add, ...
-            '/home2/brainard/toolboxes/NAG/mex.a64:', ...
-            '/home2/brainard/toolboxes/NAG/help/NAG:', ...
-            genpath('/home2/brainard/toolboxes/NAG/help/NAGToolboxDemos'), ...
-            ];
     end
 end
 
