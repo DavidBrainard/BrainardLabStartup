@@ -190,7 +190,8 @@ if iAmOSX
                     paths2add = [paths2add, ...
                         genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerSensitivity'), ...
                         genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPsychophysics'), ...
-                        genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
+                        genpath('/Users/Shared/Matlab/Toolboxes/mgl'), ...
+                        genpath('/Users/Shared/Matlab/Toolboxes/LightandReceptorCalculations')];
                 case {'spitschan', 'mspits'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
                         genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
@@ -258,7 +259,8 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRklar')];              
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRklar')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRblau')];
             
             % Toolboxes in our local toolboxesdistrib repository.
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/','dir'))
@@ -365,7 +367,7 @@ if iAmOSX
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
 
-% Cluster initializationhttps://github.com/isetbio/RemoteDataToolbox/blob/master/scripts/testConnection.m
+% Cluster initialization https://github.com/isetbio/RemoteDataToolbox/blob/master/scripts/testConnection.m
 if (exist('IsCluster'))
     [isCluster,whichCluster] = IsCluster;
 else
@@ -377,53 +379,18 @@ if (isCluster)
     % time.
     paths2add = [];
     
-    if (strcmp(whichCluster,'rhino'))
-        % Rhino
-        fprintf('Startup: Standard Brainard rhino configuration\n');
-        switch (psychtoolboxFlavor)
-            case 'default'
-                paths2add = [paths2add, ...
-                    genpath('/home2/brainard/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
-                    ];
-            case {'beta', 'current'}
-                paths2add = [paths2add, ...
-                    genpath('/home2/brainard/toolboxes/Psychtoolbox'), ...
-                    ];
-        end
-        
-        % BrainardLabToolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabToolbox')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabPrivateToolbox')];
-  
-        % MDS toolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/MDSToolbox')];
-        
-        % matlabPyrTools
-        paths2add = [paths2add, '/home2/brainard/toolboxes/matlabPyrTools/MEX:', ...
-            '/home2/brainard/toolboxes/matlabPyrTools:'];
-        
-        % Render toolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox3')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SphereRendererToolbox')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
+    if (strcmp(whichCluster,'gpc'))
+        % GPC
+        fprintf('Startup: Standard Brainard GPC configuration\n');
 
-        % Sim toolbox.
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SimAll')];
-        
-        % isetbio (includes WavefrontOpticsToolbox)
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/isetbio')];
-        
-        % CalLocalData
+        % Psychtoolbox
         paths2add = [paths2add, ...
-            genpath('/home2/brainard/toolboxes/PsychCalLocalData'), ...
-            ];
+                    genpath('/home/dhb/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
+                    ];
+                
+        % BrainardLabToolbox
+        paths2add = [paths2add, genpath('/home/dhb/toolboxes/BrainardLabToolbox')];
         
-        % NAG
-        paths2add = [paths2add, ...
-            '/home2/brainard/toolboxes/NAG/mex.a64:', ...
-            '/home2/brainard/toolboxes/NAG/help/NAG:', ...
-            genpath('/home2/brainard/toolboxes/NAG/help/NAGToolboxDemos'), ...
-            ];
     end
 end
 
@@ -442,6 +409,7 @@ if (iAmOSX)
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox/PsychJava','Psychtoolbox/PsychJava');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/BrainardLabToolbox/Java/jheapcl/MatlabGarbageCollector.jar','MatlabGarbageCollector.jar');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/OneLightToolbox/OLEngine/OOI_HOME/OmniDriver.jar','OmniDriver.jar');
+        JavaAddToPath('/Users/Shared/Matlab/Toolboxes/OneLightDriver/xOceanOpticsJava/OmniDriver.jar','OmniDriver.jar');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox/ResponseCardSDK-2.6.4/ResponseCardSDK-2.6.4-RELEASE.jar','ResponseCardSDK-2.6.4-RELEASE.jar');
         %JavaAddToPath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox/ResponseCardSDK-2.6.4/lib/jna.jar','jna.jar');
     end
