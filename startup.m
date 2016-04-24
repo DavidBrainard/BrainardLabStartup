@@ -364,11 +364,11 @@ if (isCluster)
 
         % Psychtoolbox
         paths2add = [paths2add, ...
-                    genpath('/home/brainard/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
+                    genpath('/home/dhb/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
                     ];
                 
         % BrainardLabToolbox
-        paths2add = [paths2add, genpath('/home/brainard/toolboxes/BrainardLabToolbox')];
+        paths2add = [paths2add, genpath('/home/dhb/toolboxes/BrainardLabToolbox')];
         
         % rsatoolbox
         paths2add = [paths2add, genpath('/home/brainard/toolboxesdistrib/rsatoolbox')];   
