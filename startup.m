@@ -66,6 +66,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 % 12/23/14 dhb Remove ConeAdaptationToolbox because it collides with isetbio.
 % 09/03/15 dhb MGL is now back to being called mgl, even for the 64 bit version.
 % 01/28/16 dhb OneLightDriver, PupilAnalysisToolbox.
+% 04/24/16 dhb Add rsatoolbox, delete a bunch of very old things.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -172,10 +173,7 @@ if iAmOSX
             
             % User specific custimization. We can special case certain users if we want to.
             switch (theUser(1:end-1))
-                case {'ana'}
-                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
-                        genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
-                case {'radonjic'}
+                case {'ana', 'radonjic'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
                         genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
                 case {'nicolas'}
@@ -281,7 +279,7 @@ if iAmOSX
             end
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('psignifit', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('NIfTIToolbox', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
-            
+
             % MEX file innerProd is now slower than it's m file equivalent.
             % So don't wrap this with genpath, leads to the subdir not
             % being added.
@@ -289,13 +287,6 @@ if iAmOSX
                 paths2add = [paths2add, '/Users/Shared/Matlab/ToolboxesDistrib/textureSynth:', ...
                     ];
             end
-            
-            % These are pretty obsolate, not adding at the moment.
-            %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/BrainardLabFMRIToolbox')];
-            
-            % Toolboxes that we used to have but moved elsewhere or got rid of
-            %paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/BayesToolbox')];
-            %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Common')];
             
             % MGL.  32 bit version is local, 64 we get from the distribution server.
             % The newest 64 bit version has the old mgl name and is now on gitHub.
@@ -323,12 +314,6 @@ if iAmOSX
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
             
-            % Jacket
-            paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/jacket/engine')];
-            
-            % Matjag
-            paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/matjags')];
-            
             % Add the PTB overrides toolbox before everything else if it exists.
             % This toolbox lets us write 64 bit versions of PTB functions without
             % actually touching the PTB.
@@ -349,20 +334,14 @@ if iAmOSX
                 end
             end
             
-            % GLCalibration.  We can't quite decide if this is a toolbox or not.
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/GLCalibration')];
-            
-            % Add the packages folder to the path if it exists.  This is where
-            % people will stick any packages they want automatically on the path.
-            packagesDir = '/Users/Shared/Matlab/Packages';
-            if exist(packagesDir, 'dir')
-                paths2add = [packagesDir, ':', paths2add];
-            end
-            
             % ISET at end so that conflicting names get our version.
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/isetbio')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/UnitTestToolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/RemoteDataToolbox')];
+            
+            % Same with rsatoolbox
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/ToolboxesDistrib/rsatoolbox')];
+
             
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
@@ -391,6 +370,8 @@ if (isCluster)
         % BrainardLabToolbox
         paths2add = [paths2add, genpath('/home/brainard/toolboxes/BrainardLabToolbox')];
         
+        % rsatoolbox
+        paths2add = [paths2add, genpath('/home/brainard/toolboxesdistrib/rsatoolbox')];   
     end
 end
 
