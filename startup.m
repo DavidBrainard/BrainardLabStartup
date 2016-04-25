@@ -12,7 +12,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %    0 -- Don't reset saved path unless Psychtoolbox is found on path (default).
 %    1 -- Reset saved path to Brainard la default no matter what.
 %
-% noBrainarLab:
+% noBrainardLabToolbox:
 %    0 -- Add BrainardLab toolbox and some of its fellow travellers (default).
 %    1 -- Don't add BLTB.
 %
