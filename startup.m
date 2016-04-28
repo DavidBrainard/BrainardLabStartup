@@ -371,7 +371,7 @@ if (isCluster)
         paths2add = [paths2add, genpath('/home/dhb/toolboxes/BrainardLabToolbox')];
         
         % rsatoolbox
-        paths2add = [paths2add, genpath('/home/brainard/toolboxesdistrib/rsatoolbox')];   
+        paths2add = [paths2add, genpath('/home/dhb/toolboxesdistrib/rsatoolbox')];   
     end
 end
 
