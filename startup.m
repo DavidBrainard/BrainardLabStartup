@@ -12,7 +12,7 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %    0 -- Don't reset saved path unless Psychtoolbox is found on path (default).
 %    1 -- Reset saved path to Brainard la default no matter what.
 %
-% noBrainarLab:
+% noBrainardLabToolbox:
 %    0 -- Add BrainardLab toolbox and some of its fellow travellers (default).
 %    1 -- Don't add BLTB.
 %
@@ -65,6 +65,8 @@ function startup(psychtoolboxFlavor,forceDefault,noBrainardLabToolbox)
 %              Remove RenderToolbox3 from Ana's special cases.
 % 12/23/14 dhb Remove ConeAdaptationToolbox because it collides with isetbio.
 % 09/03/15 dhb MGL is now back to being called mgl, even for the 64 bit version.
+% 01/28/16 dhb OneLightDriver, PupilAnalysisToolbox.
+% 04/24/16 dhb Add rsatoolbox, delete a bunch of very old things.
 
 % Don't do anything under OS 9 or if being compiled by the Matlab compiler.
 if strcmp(computer, 'MAC2') || ismcc || isdeployed
@@ -171,10 +173,7 @@ if iAmOSX
             
             % User specific custimization. We can special case certain users if we want to.
             switch (theUser(1:end-1))
-                case {'ana'}
-                    paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
-                        genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
-                case {'radonjic'}
+                case {'ana', 'radonjic'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Experiments/HDRExperiments/HDRCalibration'), ...
                         genpath('/Users/Shared/Matlab/toolboxes/AnaUtilities')];
                 case {'nicolas'}
@@ -186,17 +185,21 @@ if iAmOSX
                         genpath('/Users/Shared/Matlab/Toolboxes/OLEDToolbox') ...
                         genpath('/Users/nicolas/Documents/1.code/2.matlabDevs/ProjectPrefs') ...
                         ];
-                case {'pupillab', 'melanopsin'}
+                case {'pupillab', 'melanopsin', 'connectome'}
                     paths2add = [paths2add, ...
                         genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerSensitivity'), ...
-                        genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
+                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPsychophysics'), ...
+                        genpath('/Users/Shared/Matlab/Toolboxes/mgl'), ...
+                        genpath('/Users/Shared/Matlab/Toolboxes/LightandReceptorCalculations')];
                 case {'spitschan', 'mspits'}
                     paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SpikeSortToolbox') ...
                         genpath('/Users/Shared/Matlab/toolboxes/ManuelUtilities') ...
                         genpath('/Applications/freesurfer/matlab') ...
-                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerMRI') ...
-                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPupilDiameter') ... 
+                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLFlickerSensitivity') ...
+                        genpath('/Users/Shared/Matlab/Experiments/OneLight/OLPsychophysics'), ...
                         genpath('/Users/Shared/Matlab/Toolboxes/AstroMatlab') ...
+                        genpath('/Users/Shared/Matlab/Toolboxes/burgelabtoolbox') ...
+                        genpath('/Users/Shared/Matlab/Toolboxes/burgelabtoolbox') ...
                         genpath('/Users/Shared/Matlab/gkaguirrelab_Toolboxes') ...
                         genpath('/Users/Shared/Matlab/gkaguirrelab_Projects') ...
                         genpath('/Users/Shared/Matlab/gkaguirrelab_Stimuli')];
@@ -248,6 +251,8 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MDSToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/NIToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OneLightToolbox')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/OneLightDriver')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/PupilAnalysisToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/PsychCalLocalData')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ReceptorLearningToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/StereoHDRToolbox')];
@@ -255,7 +260,8 @@ if iAmOSX
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/LEDToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorBookToolbox')];
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastSplatterToolbox')];              
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRklar')];
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/MRlyze')];
             
             % Toolboxes in our local toolboxesdistrib repository.
             if (exist('/Users/Shared/Matlab/ToolboxesDistrib/matlabPyrTools/','dir'))
@@ -276,7 +282,7 @@ if iAmOSX
             end
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('psignifit', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
             paths2add = addToolboxPathAndWarnIfFoundAtMultipleLocations('NIfTIToolbox', '/Users/Shared/Matlab/ToolboxesDistrib', '/Users/Shared/Matlab/Toolboxes', paths2add);
-            
+
             % MEX file innerProd is now slower than it's m file equivalent.
             % So don't wrap this with genpath, leads to the subdir not
             % being added.
@@ -284,13 +290,6 @@ if iAmOSX
                 paths2add = [paths2add, '/Users/Shared/Matlab/ToolboxesDistrib/textureSynth:', ...
                     ];
             end
-            
-            % These are pretty obsolate, not adding at the moment.
-            %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/BrainardLabFMRIToolbox')];
-            
-            % Toolboxes that we used to have but moved elsewhere or got rid of
-            %paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/BayesToolbox')];
-            %paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/Common')];
             
             % MGL.  32 bit version is local, 64 we get from the distribution server.
             % The newest 64 bit version has the old mgl name and is now on gitHub.
@@ -309,7 +308,6 @@ if iAmOSX
                 paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/mgl')];
             end
             
-            
             % Render toolbox
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/RenderToolbox3')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/SphereRendererToolbox')];
@@ -318,12 +316,6 @@ if iAmOSX
 
             % Simtoolbox
             paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/SimAll')];
-            
-            % Jacket
-            paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/jacket/engine')];
-            
-            % Matjag
-            paths2add = [paths2add,genpath('/Users/Shared/Matlab/Toolboxes/matjags')];
             
             % Add the PTB overrides toolbox before everything else if it exists.
             % This toolbox lets us write 64 bit versions of PTB functions without
@@ -345,29 +337,19 @@ if iAmOSX
                 end
             end
             
-            % GLCalibration.  We can't quite decide if this is a toolbox or not.
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/GLCalibration')];
-            
-            % Add the packages folder to the path if it exists.  This is where
-            % people will stick any packages they want automatically on the path.
-            packagesDir = '/Users/Shared/Matlab/Packages';
-            if exist(packagesDir, 'dir')
-                paths2add = [packagesDir, ':', paths2add];
-            end
-            
             % ISET at end so that conflicting names get our version.
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/iset-4.0')];
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/vset')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/isetbio')];
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/computationaleyebrain/toolbox')];
-            %paths2add = [paths2add genpath('/Users/Shared/Matlab/Analysis/BLIlluminationDiscriminationCalcs/toolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/UnitTestToolbox')];
             paths2add = [paths2add genpath('/Users/Shared/Matlab/Toolboxes/RemoteDataToolbox')];
+            
+            % Same with rsatoolbox
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/ToolboxesDistrib/rsatoolbox')];
+
             
     end % End switch (host(1:end-1))
 end % End if (strcmp(computer,'MAC'))
 
-% Cluster initializationhttps://github.com/isetbio/RemoteDataToolbox/blob/master/scripts/testConnection.m
+% Cluster initialization https://github.com/isetbio/RemoteDataToolbox/blob/master/scripts/testConnection.m
 if (exist('IsCluster'))
     [isCluster,whichCluster] = IsCluster;
 else
@@ -379,53 +361,25 @@ if (isCluster)
     % time.
     paths2add = [];
     
-    if (strcmp(whichCluster,'rhino'))
-        % Rhino
-        fprintf('Startup: Standard Brainard rhino configuration\n');
-        switch (psychtoolboxFlavor)
-            case 'default'
-                paths2add = [paths2add, ...
-                    genpath('/home2/brainard/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
-                    ];
-            case {'beta', 'current'}
-                paths2add = [paths2add, ...
-                    genpath('/home2/brainard/toolboxes/Psychtoolbox'), ...
-                    ];
-        end
-        
-        % BrainardLabToolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabToolbox')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/BrainardLabPrivateToolbox')];
-  
-        % MDS toolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/MDSToolbox')];
-        
-        % matlabPyrTools
-        paths2add = [paths2add, '/home2/brainard/toolboxes/matlabPyrTools/MEX:', ...
-            '/home2/brainard/toolboxes/matlabPyrTools:'];
-        
-        % Render toolbox
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolbox3')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SphereRendererToolbox')];
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/RenderToolboxDevelop/VirtualScenesToolbox')];
+    if (strcmp(whichCluster,'gpc'))
+        % GPC
+        fprintf('Startup: Standard Brainard GPC configuration\n');
 
-        % Sim toolbox.
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/SimAll')];
-        
-        % isetbio (includes WavefrontOpticsToolbox)
-        paths2add = [paths2add, genpath('/home2/brainard/toolboxes/isetbio')];
-        
-        % CalLocalData
+        % Psychtoolbox
         paths2add = [paths2add, ...
-            genpath('/home2/brainard/toolboxes/PsychCalLocalData'), ...
-            ];
+                    genpath('/home/dhb/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
+                    ];
+                
+        % BrainardLabToolbox
+        paths2add = [paths2add, genpath('/home/dhb/toolboxes/BrainardLabToolbox')];
         
-        % NAG
-        paths2add = [paths2add, ...
-            '/home2/brainard/toolboxes/NAG/mex.a64:', ...
-            '/home2/brainard/toolboxes/NAG/help/NAG:', ...
-            genpath('/home2/brainard/toolboxes/NAG/help/NAGToolboxDemos'), ...
-            ];
+        % isetbio
+        paths2add = [paths2add, genpath('/home/dhb/toolboxes/isetbio')];
+        paths2add = [paths2add, genpath('/home/dhb/toolboxes/UnitTestToolbox')];
+        paths2add = [paths2add, genpath('/home/dhb/toolboxes/RemoteDataToolbox')];
+        
+        % rsatoolbox
+        paths2add = [paths2add, genpath('/home/dhb/toolboxesdistrib/rsatoolbox')];   
     end
 end
 
@@ -444,6 +398,7 @@ if (iAmOSX)
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/Psychtoolbox-3/Psychtoolbox/PsychJava','Psychtoolbox/PsychJava');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/BrainardLabToolbox/Java/jheapcl/MatlabGarbageCollector.jar','MatlabGarbageCollector.jar');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/OneLightToolbox/OLEngine/OOI_HOME/OmniDriver.jar','OmniDriver.jar');
+        JavaAddToPath('/Users/Shared/Matlab/Toolboxes/OneLightDriver/xOceanOpticsJava/OmniDriver.jar','OmniDriver.jar');
         JavaAddToPath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox/ResponseCardSDK-2.6.4/ResponseCardSDK-2.6.4-RELEASE.jar','ResponseCardSDK-2.6.4-RELEASE.jar');
         %JavaAddToPath('/Users/Shared/Matlab/Toolboxes/TTClickersToolbox/ResponseCardSDK-2.6.4/lib/jna.jar','jna.jar');
     end
