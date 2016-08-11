@@ -108,6 +108,9 @@ if iAmOSX
         end
         savepath; %#ok<*MCSVP>
     end
+    
+    % /usr/local/bin to PATH so we can find things installed by Homebrew
+    setenv('PATH', ['/usr/local/bin:' getenv('PATH')]);
 end
 
 % Only do this for OS/X, not cluster
@@ -240,6 +243,11 @@ if iAmOSX
                     setenv('DYLD_LIBRARY_PATH', '/usr/local/bin/');
             end
             
+            % ToolboxToolbox.  The new way.  Add this in.  It shouldn't do any harm
+            % unless you actively use it.
+            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ToolboxToolbox')];
+    
+            % Other standard stuff
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorMemoryToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ContrastResponseModelToolbox')];
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/DenoiseToolbox')];
@@ -370,6 +378,9 @@ if (isCluster)
         paths2add = [paths2add, ...
                     genpath('/home/dhb/toolboxes/Psychtoolbox-3/Psychtoolbox'), ...
                     ];
+                
+        % ToolboxToolbox
+        paths2add = [paths2add, genpath('/home/dhb/toolboxes/ToolboxToolbox')];
                 
         % BrainardLabToolbox
         paths2add = [paths2add, genpath('/home/dhb/toolboxes/BrainardLabToolbox')];
