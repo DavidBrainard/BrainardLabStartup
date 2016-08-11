@@ -242,10 +242,6 @@ if iAmOSX
                     setenv('PATH', [getenv('PATH') ':/usr/local/afni']);
                     setenv('DYLD_LIBRARY_PATH', '/usr/local/bin/');
             end
-            
-            % ToolboxToolbox.  The new way.  Add this in.  It shouldn't do any harm
-            % unless you actively use it.
-            paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ToolboxToolbox')];
     
             % Other standard stuff
             paths2add = [paths2add, genpath('/Users/Shared/Matlab/Toolboxes/ColorMemoryToolbox')];
